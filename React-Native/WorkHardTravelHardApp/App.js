@@ -15,40 +15,52 @@ import { theme } from "./colors";
 import { useState, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Fontisto } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
 
 const STORAGE_KEY = "@toDos";
+const LASTLOCATION_KEY = "@lastLocation";
 
 export default function App() {
-  const [working, setWorking] = useState(true);
+  const [working, setWorking] = useState("");
   const [text, setText] = useState("");
   const [toDos, setToDos] = useState({});
 
   useEffect(() => {
+    const loadToDos = async () => {
+      const strTodos = await AsyncStorage.getItem(STORAGE_KEY);
+      const lastLocation = await AsyncStorage.getItem(LASTLOCATION_KEY);
+      lastLocation === "Work" ? setWorking(true) : setWorking(false);
+      setToDos(JSON.parse(strTodos));
+    };
     loadToDos();
   }, []);
 
-  const travel = () => setWorking(false);
-  const work = () => setWorking(true);
+  const changeMenu = async (Menu) => {
+    Menu === "Work" ? setWorking(true) : setWorking(false);
+    await AsyncStorage.setItem("@lastLocation", Menu);
+  };
+
   const onChangeText = (payload) => setText(payload);
+
   const saveToDos = async (toSave) => {
     await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(toSave));
   };
-  const loadToDos = async () => {
-    const s = await AsyncStorage.getItem(STORAGE_KEY);
-    setToDos(JSON.parse(s));
-  };
 
+  // Todo 추가 함수
   const addTodo = async () => {
     if (text === "") {
       return;
     }
-    // save to do
-    const newToDos = { ...toDos, [Date.now()]: { text, working } };
+    const newToDos = {
+      ...toDos,
+      [Date.now()]: { text, working, completed: false },
+    };
     setToDos(newToDos);
     await saveToDos(newToDos);
     setText("");
   };
 
+  // Todo 삭제 함수
   const deleteTodo = (key) => {
     Alert.alert("할일을 삭제하시겠습니까 ?", "삭제하면 되돌릴 수 없습니다.", [
       { text: "취소" },
@@ -65,18 +77,25 @@ export default function App() {
     ]);
   };
 
+  const checkTodos = (key) => {
+    const newToDos = { ...toDos };
+    newToDos[key].completed = !newToDos[key].completed;
+    setToDos(newToDos);
+    saveToDos(newToDos);
+  };
+
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
       <View style={styles.header}>
-        <TouchableOpacity onPress={work}>
+        <TouchableOpacity onPress={() => changeMenu("Work")}>
           <Text
             style={{ ...styles.btnText, color: working ? "white" : theme.grey }}
           >
             Work
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={travel}>
+        <TouchableOpacity onPress={() => changeMenu("Travel")}>
           <Text
             style={{
               ...styles.btnText,
@@ -99,7 +118,26 @@ export default function App() {
         {Object.keys(toDos).map((key) =>
           toDos[key].working === working ? (
             <View style={styles.toDo} key={key}>
-              <Text style={styles.toDoText}>{toDos[key].text}</Text>
+              <TouchableOpacity
+                style={styles.flexBox}
+                onPress={() => checkTodos(key)}
+              >
+                <Text style={styles.checkIconBox}>
+                  <AntDesign
+                    name={toDos[key].completed ? "checksquare" : "checksquareo"}
+                    size={24}
+                    color={toDos[key].completed ? "black" : "white"}
+                  />
+                </Text>
+                <Text
+                  style={{
+                    ...styles.toDoText,
+                    color: toDos[key].completed ? "black" : "white",
+                  }}
+                >
+                  {toDos[key].text}
+                </Text>
+              </TouchableOpacity>
               <TouchableOpacity onPress={() => deleteTodo(key)}>
                 <Text>
                   <Fontisto name="trash" size={18} color={theme.toDoBg} />
@@ -119,6 +157,10 @@ const styles = StyleSheet.create({
     backgroundColor: theme.bg,
     paddingHorizontal: 20,
   },
+  flexBox: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
   header: {
     justifyContent: "space-between",
     flexDirection: "row",
@@ -135,6 +177,9 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     marginVertical: 20,
     fontSize: 18,
+  },
+  checkIconBox: {
+    marginRight: 10,
   },
   toDo: {
     backgroundColor: theme.grey,
