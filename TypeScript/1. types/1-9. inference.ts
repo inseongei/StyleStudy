@@ -1,5 +1,5 @@
 /**
- * Type Inference
+ * Type Inference (타입 추론)
  */
 
 let text = "hello";

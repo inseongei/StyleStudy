@@ -13,6 +13,7 @@
 
   // TypeScript
   type DaysOfWeek = "Monday" | "Tuesday" | "Wednesday";
+  // enum을 사용하면 가독성과 사용성을 높일 수 있다. 변하지 않는 상수값에 대한.
   enum Days {
     Monday,
     Tuesday,
@@ -22,9 +23,9 @@
     Saturday,
     Sunday,
   }
-  console.log(Days.Monday);
+  console.log(Days.Monday); // 0 : 해당되는 인덱스 값이 나오게 된다.
   let day: Days = Days.Saturday;
-  day = Days.Thursday;
+  day = Days.Thursday; // 4 : 해당되는 인덱스 값이 나오게 된다.
   console.log(day);
 
   let dayOfweek: DaysOfWeek = "Monday";

@@ -6,6 +6,8 @@
   const name: Text = "ellie";
   const address: Text = "korea";
   type Num = number;
+
+  // 객체로 만들수도 있으며, name 또는 age 둘중에 하나라도 없을 시 경고가 뜨게 된다.
   type Student = {
     name: string;
     age: number;
