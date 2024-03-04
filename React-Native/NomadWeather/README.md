@@ -4,7 +4,7 @@
 2. [Dimensions](#Dimensions)
 3. [ActivityIndicator](#ActivityIndicator)
 4. [Location](#Location)
-5. [expo/vector-icons](#expo/vector-icons)
+5. [expo/vector-icons](#expoVectorIcons)
 
 ### ScrollView
 
@@ -93,7 +93,7 @@ const location = await Location.reverseGeocodeAsync(
    
    3-3. `useGoogleMaps` : 구글맵을 사용하는지의 여부
 
-### expo/vector-icons
+### expoVectorIcons
 
 ```js
 import { AntDesign } from "@expo/vector-icons";
