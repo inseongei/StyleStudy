@@ -15,6 +15,7 @@ function App() {
   // 5. 함수가 끝나고 App 다시 리렌더링
   // 6. let counter = 0 을 거치면서 counter 값은 다시 0 으로 초기화
   // 7. state 값은 update가 되면서 다시 리렌더링 한다.
+
   return (
     <>
       <div>{counter2}</div>
