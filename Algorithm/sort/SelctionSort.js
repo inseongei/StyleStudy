@@ -1,4 +1,3 @@
-// 선택 정렬 - Selection Sort
 function selectionSort(arr) {
   console.log(arr);
   for (let i = 0; i < arr.length; i++) {
