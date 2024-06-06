@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import AppProducts from "./AppProducts";
+import AppMentors from "./AppMentors";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<AppProducts />);
+root.render(<AppMentors />);
