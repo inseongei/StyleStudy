@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import AppForm from "./AppFrom";
+import AppCard from "./AppCard";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<AppForm />);
+root.render(<AppCard />);
