@@ -1,22 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import useProducts from "../../hooks/use-products";
 
 export default function Products() {
-  const [count, setCount] = useState(0);
   const [checked, setChecked] = useState(false);
-  const [products, setProducts] = useState([]);
+  const [loading, error, products] = useProducts({ salesOnly: checked });
   const handleChange = () => setChecked((prev) => !prev);
 
-  useEffect(() => {
-    fetch(`data/${checked ? "sale_" : ""}products.json`)
-      .then((res) => res.json())
-      .then((data) => {
-        setProducts(data);
-      });
-
-    return () => {
-      console.log("청소");
-    };
-  }, [checked]);
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>{error}</p>;
 
   return (
     <>
@@ -37,7 +28,6 @@ export default function Products() {
           </li>
         ))}
       </ul>
-      <button onClick={() => setCount((prev) => prev + 1)}>{count}</button>
     </>
   );
 }
