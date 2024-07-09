@@ -34,6 +34,22 @@ var 학교 = {
 학교.friend = ["Lee", 학교.teacher];
 /********************************************************************* */
 function numfn(x) {
-    return x * 2;
+    var array = [];
+    array[0] = x;
 }
 numfn(2);
+/*********************************************************************07-09*/
+function clearFn(arr) {
+    var array = [];
+    for (var i = 0; i < arr.length; i++) {
+        if (typeof arr[i] === "string") {
+            array.push(Number(arr[i]));
+        }
+        else if (typeof arr[i] === "number") {
+            array.push(arr[i]);
+        }
+    }
+    return array;
+}
+// 예시 호출
+console.log(clearFn(["1", 2, "3"])); // [1, 2, 3]

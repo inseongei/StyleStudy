@@ -67,8 +67,69 @@ let 학교: school = {
 학교.friend = ["Lee", 학교.teacher];
 
 /********************************************************************* */
-function numfn(x: number) {
-  return x * 2;
+function numfn(x: number | string) {
+  let array: number[] = [];
+  array[0] = x as number;
 }
 
 numfn(2);
+
+/*********************************************************************07-09*/
+function clearFn(arr: (number | string)[]): number[] {
+  let array: number[] = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (typeof arr[i] === "string") {
+      array.push(Number(arr[i]));
+    } else if (typeof arr[i] === "number") {
+      array.push(arr[i] as number);
+    }
+  }
+
+  return array;
+}
+
+// 예시 호출
+console.log(clearFn(["1", 2, "3"])); // [1, 2, 3]
+
+// type alias - 길고 복잡할 때 사용
+let 동물: string | number | undefined;
+
+type Animal = string | number | undefined;
+let 동물2: Animal = 123;
+
+// ReadOnly
+type human = {
+  readonly name: string;
+};
+
+const person: human = {
+  name: "인성",
+};
+
+type Check = {
+  name: string;
+  phone: number;
+  email: string;
+  age: boolean;
+};
+
+let 이름3: 123;
+
+function testFn(text: "a" | "b") {
+  // ...
+}
+
+function game(what: "가위" | "바위" | "보"): ("가위" | "바위" | "보")[] {
+  // ...
+  return ["가위"];
+}
+
+var 자료 = {
+  name: "kim",
+};
+
+자료.name;
+
+function 내함수(a: "kim") {}
+
+내함수(자료.name);
