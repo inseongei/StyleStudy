@@ -132,4 +132,31 @@ var 자료 = {
 
 function 내함수(a: "kim") {}
 
-내함수(자료.name);
+// 내함수(자료.name);
+
+/*********************************************************************07-10*/
+
+// string 타입의 매개변수를 받아와서 number 타입으로 뱉는 함수
+type 함수타입 = (a: string) => number;
+
+let fn: 함수타입 = function (a) {
+  return 10;
+};
+
+let 회원정보 = {
+  name: "Jung",
+  plusOne(a): number {
+    return a + 1;
+  },
+  changeName: () => {},
+};
+
+회원정보.plusOne(2);
+
+type Cut = (str: string) => string;
+
+let cutfn: Cut = function (str) {
+  if (str[0] === "0") {
+    return str.slice(1, str.length);
+  }
+};
