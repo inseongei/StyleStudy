@@ -160,3 +160,76 @@ let cutfn: Cut = function (str) {
     return str.slice(1, str.length);
   }
 };
+
+/*********************************07-13 */
+
+let person2 = { student: true, age: 20 };
+
+function Max(...num: number[]): number {
+  return Math.max(...num);
+}
+
+/*********************************07-14 */
+type Fish = { swim: string };
+type Bird = { fly: string };
+
+function 함수3(animal: Fish | Bird) {}
+
+type Car = {
+  wheel: "4개";
+  color: string;
+};
+
+type Bike = {
+  wheel: "2개";
+  color: string;
+};
+
+function 함수4(x: Car | Bike) {
+  if (x.wheel === "4개") {
+  }
+}
+
+/*****************************07-20 */
+class User2 {
+  name;
+  constructor() {
+    this.name = "kim";
+  }
+}
+
+class Person {
+  constructor(public name) {
+    // 이 자리에 들어온 파라미터는 자식의 name 속성에 기입
+  }
+}
+
+let 자식 = new Person("inseong");
+
+class User3 {
+  protected x = 10;
+}
+
+class NewUser extends User3 {
+  doThis() {
+    this.x = 20;
+  }
+}
+
+class User4 {
+  static x = 10;
+  y = 20;
+}
+
+let 자식2 = new User4();
+
+class HomeWork {
+  static skill = "js";
+  intro = HomeWork.skill + "전문가입니다.";
+
+  constructor(a) {
+    a + this.intro;
+  }
+}
+
+let 인성 = new HomeWork("js");
