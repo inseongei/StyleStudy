@@ -233,3 +233,20 @@ class HomeWork {
 }
 
 let 인성 = new HomeWork("js");
+
+/*********************07-21 */
+function fn2<MyType extends number>(x: unknown[]) {
+  return x[0];
+}
+
+let a = fn2<number>([4, 2]);
+console.log(a);
+
+interface LengthCheck {
+  length: number;
+}
+
+let 멍멍: (string | boolean)[] = ["dog", true];
+
+let arr = [1, 2, 3];
+let arr2 = [4, 5, ...arr];
