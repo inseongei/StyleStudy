@@ -249,4 +249,62 @@ interface LengthCheck {
 let 멍멍: (string | boolean)[] = ["dog", true];
 
 let arr = [1, 2, 3];
-let arr2 = [4, 5, ...arr];
+let arr2: [number, number, ...number[]] = [4, 5, ...arr];
+
+/**************************** 07-31 */
+import { Age } from "./test.d";
+
+let age: Age;
+
+let 이름4: string = "김";
+
+/********************************08-01 */
+
+interface StringOnly {
+  name: string;
+  age: string;
+  location: string;
+}
+
+let user = {
+  name: "kim",
+  age: "20",
+  location: "seoul",
+};
+
+let obj = { name: "kim", age: 20 };
+Object.keys(obj); // name, age
+
+interface Person {
+  age: number;
+  name2: string;
+}
+
+type PersonKeys = keyof Person; // "age" | "name2"
+let n: PersonKeys = "age";
+
+type Car2 = {
+  color: boolean;
+  model: boolean;
+  price: boolean | number;
+};
+
+type TypeChanger<MyType> = {
+  [key in keyof MyType]: string;
+};
+
+type 새로운타입 = TypeChanger<Car2>;
+
+type Age<T> = T extends string ? string : unknown;
+
+let abc1: Age<string>;
+let abc2: Age<number>; // number는 string이 아니기 때문에 unknown
+
+type FirstItem<T> = T extends any[] ? T[0] : any;
+
+let age1: FirstItem<string[]>;
+let age2: FirstItem<number>;
+
+type 타입추출<T> = T extends () => (infer R)[] ? R : unknown;
+
+type a = 타입추출<() => void>;
