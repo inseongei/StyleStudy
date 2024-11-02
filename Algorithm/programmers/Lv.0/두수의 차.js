@@ -1,5 +1,4 @@
 /* 00:15 / 10:00 */
-
 function solution(num1, num2) {
   return num1 - num2;
 }

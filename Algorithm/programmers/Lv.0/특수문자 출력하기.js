@@ -1,5 +1,4 @@
 /* 05:34 / 10:00 */
-
 const readline = require("readline");
 const rl = readline.createInterface({
   input: process.stdin,
