@@ -25,3 +25,27 @@ function solution(numer1, denom1, numer2, denom2) {
  * 반복문을 1부터 작은 값까지 돌린다. ( 최대 공약수이기 때문에 작은 값 이상으로 나올 수 없기 때문이다 )
  * a와 b를 반복문의 i와 나눴을 때 나머지가 0이라면 num 을 i로 할당한다.
  */
+
+/* 11:43 / 15:00 */
+function solution(numer1, denom1, numer2, denom2) {
+  let denom = denom1 * denom2;
+  let numer = numer1 * denom2 + numer2 * denom1;
+  let i = 2;
+  while (i <= denom) {
+    if (denom % i === 0 && numer % i === 0) {
+      denom /= i;
+      numer /= i;
+    } else {
+      i++;
+    }
+  }
+  return [numer, denom];
+}
+
+// denom1 / numer1
+// denom2 / numer2
+
+// 1. denom1 * denom2
+// 2. numer1 * denom2 + numer2 * denom1
+// 3. 무한 루프을 통해서 1번과 2번을 해당되는 i로 나눴을 때 떨어진다면 1번과 2번을 나눈다.
+// 4. 무한 루프의 탈출 조건 : i >= 1번

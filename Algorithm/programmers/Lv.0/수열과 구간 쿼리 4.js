@@ -13,3 +13,17 @@ function solution(arr, queries) {
 
 // 1. queries[i][2] === k
 // 2. queries[i][0] ~ queries[i][1] 돌면서 i가 queries[i][2]의 배수라면 arr[i]에 1을 더한다.
+
+/* 06:24 / 15:00 */
+function solution(arr, queries) {
+  for (let i = 0; i < queries.length; i++) {
+    for (let j = queries[i][0]; j <= queries[i][1]; j++) {
+      if (j % queries[i][2] === 0) {
+        arr[j] += 1;
+      }
+    }
+  }
+  return arr;
+}
+
+// 1. s부터 e 까지 돌면서 i가 k의 배수라면 k % i === 0이라면 arr[i]에 1을 더한다.
