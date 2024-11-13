@@ -1,3 +1,4 @@
+/* 시간초과💢 */
 function solution(hp) {
   let generalAnts = Math.floor(hp / 5);
   let remainder = hp % 5;
