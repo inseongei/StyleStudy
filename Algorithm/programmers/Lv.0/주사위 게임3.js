@@ -36,3 +36,44 @@ function solution(a, b, c, d) {
     return Math.min(...values);
   }
 }
+
+/* 시간초과💢 */
+function solution(a, b, c, d) {
+  let result = new Array(6).fill(0);
+  let array = [a, b, c, d];
+  for (let i = 0; i < array.length; i++) {
+    result[array[i] - 1]++;
+  }
+
+  let numCheck = result.filter((item) => item !== 0).length;
+
+  if (numCheck === 1) {
+    return +(a + "" + (b + "") + (c + "") + (d + ""));
+  } else if (numCheck === 3) {
+    let answers = 1;
+    for (let i = 0; i < result.length; i++) {
+      if (result[i] === 1) answers *= i + 1;
+    }
+    return answers;
+  } else if (numCheck === 4) {
+    return Math.min(a, b, c, d);
+  } else {
+    if (result.includes(3)) {
+      let maxNum = result.indexOf(3) + 1;
+      let minNum = result.indexOf(1) + 1;
+      return (10 * maxNum + minNum) ** 2;
+    } else {
+      let test = [];
+      for (let i = 0; i < result.length; i++) {
+        if (result[i] === 2) test.push(i + 1);
+      }
+      return Math.abs((test[0] - test[1]) * (test[0] + test[1]));
+    }
+  }
+}
+
+// 1. abcd가 전부 같을 경우  1
+// 2. abcd 중에 3개가 같을 경우 2
+// 3. 2개씩 같을 경우
+// 4. 2개와 하나 하나 일 경우
+// 5. 다 다를 경우

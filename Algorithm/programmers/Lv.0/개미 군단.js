@@ -10,3 +10,15 @@ function solution(hp) {
 
   return generalAnts + soldierAnts + workerAnts;
 }
+
+/* 12:37 / 15:00 */
+function solution(hp) {
+  let FirstAnt = Math.floor(hp / 5);
+  let SecondAnt = Math.floor((hp - FirstAnt * 5) / 3);
+
+  return FirstAnt + SecondAnt + hp - (FirstAnt * 5 + SecondAnt * 3);
+}
+
+// 장군 개미 공격력 : 5
+// 병정 개미 공격력 : 3
+// 일 개미 공격력 : 1
