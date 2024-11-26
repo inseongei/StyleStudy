@@ -4,23 +4,19 @@
 
 class Counter {
   #value;
-  constructor(Startvalue) {
-    if (isNaN(Startvalue) || Startvalue < 0) {
+  constructor(num) {
+    if (isNaN(num) || num < 0) {
       this.#value = 0;
     } else {
-      this.#value = Startvalue;
+      this.#value = num;
     }
   }
 
-  get value() {
-    return this.#value;
-  }
-
-  increment = () => {
+  increase = () => {
     this.#value++;
   };
 }
 
 const counter = new Counter(0);
-counter.increment();
-console.log(counter.value);
+counter.increase();
+console.log(counter);
