@@ -28,7 +28,7 @@ result = products.some((item) => item.name === "🧀");
 console.log(result);
 
 // 배열의 아이템들이 전부 조건(콜백함수)에 맞는지 확인
-result = products.some((item) => item.name === "🧀");
+result = products.every((item) => item.name === "🧀");
 console.log(result);
 
 // 조건에 맞는 모든 아이템들을 새로운 배열로!
