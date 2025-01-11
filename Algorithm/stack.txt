@@ -1,0 +1,7 @@
+booelan isFull() : 스택에 들어 있는 데이터 개수가 maxsize인지 확인해 boolean값을 반환한다.
+boolean isEmpty() : 스택에 들어 있는 데이터가 하나도 없는지 확인해 boolean값을 반환한다.
+void push : 스택에 데이터를 푸시한다.
+ItemType pop() : 스택에서 최근에 푸시한 데이터를 팝하고, 그 데이터를 반환한다.
+
+Int top : 스택에서 최근에 푸시한 데이터의 위치를 기록한다.
+ItemType data[maxsize] : 스택의 데이터를 관리하는 배열입니다. 최대 maxsize개의 데이터를 관리한다.
