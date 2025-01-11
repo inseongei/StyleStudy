@@ -1,16 +1,27 @@
 /**
  * Let`s make a game
  */
-
 const position = { x: 0, y: 0 };
-type pos = "up" | "down" | "left" | "right";
-function move(pos: pos) {
-  if (pos === "up") position.y++;
-  if (pos === "down") position.y--;
-  if (pos === "left") position.x--;
-  if (pos === "right") position.x++;
 
-  return position;
+type Position = "up" | "down" | "left" | "right";
+
+function move(pos: Position) {
+  switch (pos) {
+    case "up":
+      position.y += 1;
+      break;
+    case "down":
+      position.y -= 1;
+      break;
+    case "left":
+      position.x -= 1;
+      break;
+    case "right":
+      position.x += 1;
+      break;
+    default:
+      throw new Error("Invalid calculator operation");
+  }
 }
 
 console.log(position); // { x : 0 , y : 0}

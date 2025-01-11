@@ -1,4 +1,4 @@
-{
+ {
   // 캡슐화를 통해 은닉화
   type CoffeeCup = {
     shots: number;

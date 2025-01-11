@@ -5,12 +5,15 @@
   };
 
   class CoffeeMaker {
-    static BEANS_GRAMM_PER_SHOT: number = 7; // class Level : 클래스와 연결이 되어 있기 때문에 오브젝트마다 생성되지 않음
-    coffeeBeans: number = 0; // instance (object) Level
+    coffeeBeans: number = 0;
+    static BEANS_GRAMM_PER_SHOT: number = 7;
 
-    // constructor : class를 이용해서 오브젝트를 만들 때 항상 처음에 호출되는 것
     constructor(coffeeBeans: number) {
       this.coffeeBeans = coffeeBeans;
+    }
+
+    static makeMachine(coffeeBeans: number): CoffeeMaker {
+      return new CoffeeMaker(coffeeBeans);
     }
 
     makeCoffee(shots: number): CoffeeCup {
@@ -23,22 +26,13 @@
         hasMilk: false,
       };
     }
-
-    static makeMachine(coffeeBeans: number): CoffeeMaker {
-      return new CoffeeMaker(coffeeBeans);
-    }
   }
 
-  const maker = new CoffeeMaker(32);
-  console.log(maker);
+  const coffee = new CoffeeMaker(2);
+  console.log(coffee);
 
-  const maker2 = new CoffeeMaker(14);
-  console.log(maker2);
-
-  const maker3 = CoffeeMaker.makeMachine(3);
-  console.log(maker3);
+  const maker = CoffeeMaker.makeMachine(3);
 }
-
 /** 각각의 클래스 인스턴스에 같은 값이 있다면 ?
  * 공유가 될수 있는 요소들을 static 으로 두면 클래스 레벨로 된다.
  * 클래스 레벨의 static 요소는 사용할때 클래스안에 있는 this안에 있는게 아니라 클래스 자체에 있는 것이기 때문에 클래스이름.을 써야 한다.
